@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- ✅ Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- ✅ Your custom CSS (optional) -->
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+    <title>Signup</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow p-4">
+                    <form method="POST">
+                        {% csrf_token %} 
+                        <h3 class="text-center mb-3">Signup</h3>
+                        <hr>
+
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" name="fnm" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" name="inp" required>
+                            {% if error %}
+    <div style="color: red; font-weight: bold; margin-bottom: 10px;">
+        {{ error }}
+    </div>
+{% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" name="pwd" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Signup</button>    
+                    </form>
+
+                    <div class="text-center mt-3">
+                        Already have an account? <a href="{% url 'login' %}">Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
